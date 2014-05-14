@@ -1,0 +1,34 @@
+<% content_for :head do %>
+  	<%= javascript_include_tag "tooltips.js" %>
+  	<script type="text/javascript">
+    	<%= render :partial => "shared/searchuser", :formats=>[:js] %>
+  	</script>
+	<style type="text/css">
+		
+
+	</style>
+<% end %>
+<div class="modal-backdrop fade" style="visibility:hidden">	
+</div>
+<div class="modal" style="display:none;">
+	<div class="modal-header">
+		<div class="modal-header-text">
+			Add Book Item
+		</div>
+		<div class="modal-close"></div>
+	</div>
+	<div class="modal-body">
+		<div class="modal-row first">
+			Enter search term: &nbsp;&nbsp;<input id="searchData" type="text" placeholder="Search User...">
+		</div>
+		<div id="searchResults" style="visibility:hidden"></div>
+	</div>
+</div>
+<div id="page-wrapper">
+
+	<%= render :partial => "shared/book" %>
+
+	<%= render :partial => "shared/bookitems" %>
+
+</div>
+

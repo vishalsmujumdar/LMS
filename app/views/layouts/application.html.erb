@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>LibraryManager</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <link href='http://fonts.googleapis.com/css?family=Enriqueta:400,700' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+  <%= yield :head %>
+
+  <style type="text/css">
+
+  </style>
+
+</head>
+<body>
+
+<%= render :partial => "layouts/header" %>
+
+<% if content_for?(:banner) %>
+  <%= yield(:banner) %>
+<% else %>
+  <div class="default-banner-wrapper">
+  	<div id="default-banner">
+  		<div id="site-title" style="visibility:hidden">
+				<%= link_to "Library Manager", users_path %>
+		</div>
+  		<div id="banner-searchbar" class="">
+			<input type="text" id="searchBookData" class="search-input" placeholder="Search for your favorite book"></input>
+			<div id="bookSearchResults" class="book-search-results" style="visibility:hidden">
+			</div>
+		</div>
+  	</div>
+  </div>
+<% end %>
+
+<div id="main-wrapper">
+	<div id="main-container">
+		<div id="flash-message-container">
+			<% flash.each do |key,value| %>
+					<p><%= value %></p>
+			<% end %>
+		</div>
+
+		<%= yield %>
+
+	</div>	
+</div>
+
+<!-- <div id="footer-wrapper">
+	<div id="site-footer">
+		FIRM ODC
+	</div>
+</div> -->
+
+</body>
+</html>

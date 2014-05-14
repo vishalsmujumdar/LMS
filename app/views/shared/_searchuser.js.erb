@@ -1,0 +1,62 @@
+$(function() {
+
+  	$('.showUserSearch').click(function() {
+      	$('.modal-backdrop.fade').css("visibility","visible");
+      	$('.modal-backdrop.fade').addClass('in');
+
+      	if ( $( ".modal" ).is( ":hidden" ) ) {
+		    $( ".modal" ).slideDown( "slow" );
+		}
+		else {
+		    $( ".modal" ).hide();
+		}
+
+
+      	//$('#user_select').slideToggle("fast");
+	});
+	$('.modal-close').click(function(){
+		$('.modal input').val('');
+		$('#searchResults').empty();
+		$('#searchResults').css('visibility','hidden');
+		$('.modal-backdrop.fade').css("visibility","hidden");
+      	$('.modal-backdrop.fade').removeClass('in');
+      	$('.modal').hide();
+
+	});
+
+    $('#searchData').keyup(function(){
+		var searchTerm = $(this).val();
+		
+		if(searchTerm !== '') {
+			var host = window.location.host;
+			var thisURL = window.location.href.toString().split(host)[1].split('/');
+			var bookid = parseInt(thisURL[(thisURL.indexOf('books')+1)]);
+			var bookitemid = parseInt(thisURL[(thisURL.indexOf('bookitems')+1)])
+			console.log(bookitemid);
+			var url = '/users/ajaxsearchusers';
+			var searchdata = { 'searchterm' : searchTerm, 'bookid' : bookid , 'bookitemid' : bookitemid };
+
+			$.ajax({
+				url: url,
+				type: "POST",
+				dataType:'html',
+				data: searchdata,
+				success: function(data){
+					$('#searchResults').css('visibility','visible');
+					$('#searchResults').empty();
+					$('#searchResults').append(data);
+				}
+			});
+		}
+		else
+		{
+			$('#searchResults').empty();
+			$('#searchResults').css('visibility','hidden');
+		}
+	});
+
+    if(previousPageURL.indexOf('/books/new') > -1)
+    {
+		$('.showUserSearch').trigger('click');    	
+    }
+});

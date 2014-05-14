@@ -1,0 +1,33 @@
+<% content_for :head do %>
+  	<script type="text/javascript">
+    	<%= render :partial => "shared/searchuser", :formats=>[:js] %>
+  	</script>
+<% end %>
+
+<div class="book">
+	<div class="book-details">
+		<div class="bookcover">
+			<%= image_tag @book.cover.url(:thumb) %>
+		</div>
+		<div class="booktitle">
+			<%= link_to "#{@book.title}", book_path(@book) %>
+		</div>
+		<div class="bookcategory">
+			<%= @book.category %>
+		</div>
+		<div class="bookauthors">
+			<%= @book.authors %>
+		</div>	
+	</div>
+</div>
+
+
+<h1>Book Issue</h1>
+
+<p>
+	Book Item Owner:&nbsp 
+	<%= @bookitem.user.name %>
+</p>
+Search User:
+<input id="searchData" type="text">
+<div id="searchResults" style="visibility:hidden"></div>

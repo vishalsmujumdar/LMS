@@ -1,0 +1,17 @@
+<% content_for :head do%>
+	<%= javascript_include_tag "tooltips.js" %>
+	<script type="text/javascript">
+    	<%= render :partial => "shared/searchuser", :formats=>[:js] %>
+  	</script>
+	<style type="text/css">
+	
+	</style>
+<% end %>
+
+<div id="page-wrapper">
+
+	<%= render :partial => "shared/book" %>
+
+	<%= render :partial => "shared/bookitems" %>
+
+</div>

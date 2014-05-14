@@ -1,0 +1,49 @@
+<h2>Import Books from CSV / Excel file</h2>
+<%= form_tag import_books_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Import" %>
+<% end %>
+<h1>
+	All Books
+</h1>
+
+<% @books.each do |book| %>
+	<div class="book">
+		<div class="book-details">
+			<div class="bookcover">
+				<%= image_tag book.cover.url(:thumb) %>
+			</div>
+			<div class="booktitle">
+				<%= link_to "#{book.title}", book_path(book) %>
+			</div>
+			<div class="bookcategory">
+				<%= book.category %>
+			</div>
+			<div class="bookauthors">
+				<%= book.authors %>
+			</div>	
+		</div>
+
+
+		<div class="book-buttons">
+			<% if can? :update, @book %>
+				<div class="btn-book">
+					<%= link_to "Edit Book", edit_book_path(book) %>
+				</div>
+				<div class="btn-book">
+					<%= link_to "Issue Book", book_bookitems_path(book) %>
+				</div>
+			<% else %>
+				<div class="btn-book">
+					<%= link_to "View Availability", book_bookitems_path(book) %>
+				</div>
+			<% end %>
+		</div>
+
+
+
+	</div>
+<% end %>
+<% if can? :create, @book %>
+	<%= link_to "Add new book", new_book_path %>
+<% end %>
