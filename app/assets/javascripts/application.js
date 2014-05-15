@@ -91,20 +91,20 @@ $(window).scroll(function(){
 });
 
 function Randomize() {
-	var images = new Array(asset-data-url('1.jpg'),
-						   asset-data-url('2.jpg'),
-						   asset-data-url('3.jpg'),
-						   asset-data-url('7.jpg'),
-						   asset-data-url('8.jpg'),
-						   asset-data-url('9.jpg'),
-						   asset-data-url('10.jpg'),
-						   asset-data-url('11.jpg'),
-						   asset-data-url('12.jpg'),
-						   asset-data-url('13.jpg'),
-						   asset-data-url('14.jpg')
+	var images = new Array('1.jpg',
+						   '2.jpg',
+						   '3.jpg',
+						   '7.jpg',
+						   '8.jpg',
+						   '9.jpg',
+						   '10.jpg',
+						   '11.jpg',
+						   '12.jpg',
+						   '13.jpg',
+						   '14.jpg'
 						   );
 	var imageNum = Math.floor(Math.random() * images.length);
-	document.getElementById("banner").style.background = "url('" + images[imageNum] + "')";
+	document.getElementById("banner").style.background = "asset-data-url('" + images[imageNum] + "')";
 }
 
 window.onload = Randomize;
