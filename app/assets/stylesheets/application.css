@@ -330,7 +330,7 @@ color: #fff;
   border: 1px solid #dddfe2;
   border-radius: 50%;
   text-align: center;
-  margin: 15px 10px;
+  margin: 25px 10px;
 }
 
 .bookitem {
@@ -347,9 +347,13 @@ color: #fff;
   float: left;
   padding: 10px 0px;
   margin: 0px 10px 0px 10px;
+  max-width: 220px
 }
 .bookitem-row.last {
-  margin: 10px 10px;
+  margin: 20px 10px;
+}
+.bookitem-row.title {
+  width: 220px;
 }
 .row-label {
   /* border: 1px solid; */    
