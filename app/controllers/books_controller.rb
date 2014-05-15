@@ -63,7 +63,7 @@ class BooksController < ApplicationController
 		(2..spreadsheet.last_row).each do |i|
 			row = Hash[[header, spreadsheet.row(i)].transpose]
 			attrs = row.to_hash
-		    book = Book.where(["title = ?","#{attrs[:title]}"]) || Book.new
+		    book = Book.where(["title = ?","#{attrs[:title]}"]).first || Book.new
 		    book.attributes = attrs
 		    book.save!
 		end
