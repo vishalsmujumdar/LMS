@@ -89,3 +89,5 @@ $(window).scroll(function(){
 		$('#default-banner #site-title').hide();
 	}
 });
+
+window.onload = Randomize
