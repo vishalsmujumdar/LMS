@@ -15,13 +15,18 @@ $(function() {
       	//$('#user_select').slideToggle("fast");
 	});
 	$('.modal-close').click(function(){
-		$('.modal input').val('');
-		$('#searchResults').empty();
-		$('#searchResults').css('visibility','hidden');
-		$('.modal-backdrop.fade').css("visibility","hidden");
-      	$('.modal-backdrop.fade').removeClass('in');
-      	$('.modal').hide();
+		//$('.modal input').val('');
+		//$('#searchResults').empty();
+		//$('#searchResults').css('visibility','hidden');
+		//$('.modal-backdrop.fade').css("visibility","hidden");
+      	//$('.modal-backdrop.fade').removeClass('in');
+      	//$('.modal').hide();
 
+      	var divToClose = $(this).parent().parent();
+      	console.log(divToClose);
+      	divToClose.css("visibility","hidden");
+      	divToClose.removeClass('in');
+      	divToClose.removeClass('show');
 	});
 
     $('#searchData').keyup(function(){

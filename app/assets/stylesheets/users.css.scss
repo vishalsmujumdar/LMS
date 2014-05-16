@@ -60,7 +60,7 @@
   box-shadow: 0px 0px 0px 1px #555 inset, 0px 0px 0px 6px rgba(255, 255, 255, 0.5), 0px 0px 4px 6px rgba(0, 0, 0, 0.25);
   -moz-box-shadow: 0px 0px 0px 1px #555 inset, 0px 0px 0px 6px rgba(255, 255, 255, 0.5), 0px 0px 4px 6px rgba(0, 0, 0, 0.25);
   -webkit-box-shadow: 0px 0px 0px 1px #555 inset, 0px 0px 0px 6px rgba(255, 255, 255, 0.5), 0px 0px 4px 6px rgba(0, 0, 0, 0.25);
-  background: white url('<%= asset_path("search-icon-md.png") %>') no-repeat;
+  background: white asset-data-url('search-icon-md.png') no-repeat;
   background-size: 25px;
   background-position: 460px 4px;
 }

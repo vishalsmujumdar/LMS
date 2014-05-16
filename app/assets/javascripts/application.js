@@ -19,6 +19,28 @@ $(document).ready(function(){
 	$('#default-banner #site-title').css("visibility","hidden");			
 	$('#default-banner #site-title').hide();
 
+	$('.signin').click(function(){
+		$('.login-box').css('visibility','visible');
+		$('.login-box').addClass('show');
+		$('.arrow-up').css('visibility','visible');
+		$('.arrow-up').addClass('show');
+	});
+
+	$('.modal-close').click(function(){
+	  	var divToClose = $(this).parent().parent();
+      	console.log(divToClose);
+      	divToClose.css("visibility","hidden");
+      	divToClose.removeClass('in');
+      	divToClose.removeClass('show');
+      	if(divToClose.hasClass('login-box')){
+      		anotherDivToClose = divToClose.prev();
+	      	anotherDivToClose.css("visibility","hidden");
+	      	anotherDivToClose.removeClass('in');
+	      	anotherDivToClose.removeClass('show');      		
+      	}
+
+	});
+
 	$('.showBookSearch').click(function(){
 		$('#book_select').slideToggle("fast");
 	});
@@ -39,14 +61,16 @@ $(document).ready(function(){
 					data: searchdata,
 					success: function(data){
 						$('#bookSearchResults').css('visibility','visible');
-						$('#bookSearchResults').empty();
-						$('#bookSearchResults').append(data);
+						//$('.book-search-results-content').css('visibility','visible');
+						$('.book-search-results-content').empty();
+						$('.book-search-results-content').append(data);
 					}
 				});
 			}
 			else
 			{
-				$('#bookSearchResults').empty();
+				$('.book-search-results-content').empty();
+				//$('.book-search-results-content').css('visibility','hidden');
 				$('#bookSearchResults').css('visibility','hidden');
 			}
 		}
@@ -55,7 +79,7 @@ $(document).ready(function(){
 	
 
 	$("#main-container .serial-number[title]").tooltips();
-	$("#main-container .item-wrapper[title]").tooltips();
+	
 
 //	setTimeout(function(){
  // window.location.reload(1);
@@ -66,10 +90,10 @@ $(document).ready(function(){
 $(window).keyup(function(event){
 	if(event.keyCode == 27)
 	{
-		if(!$('#bookSearchResults').is('hidden'))
+		if(!$('.book-search-results-content').is('hidden'))
 		{
-			$('#bookSearchResults').empty();
-			$('#bookSearchResults').css('visibility','hidden');
+			$('.book-search-results-content').empty();
+			$('.book-search-results-content').css('visibility','hidden');
 		}
 	}
 });
