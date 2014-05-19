@@ -60,15 +60,27 @@ class BooksController < ApplicationController
 		# seperate the first row as the header
 		header = spreadsheet.row(1)
 		# from the second to last_row(a ROO method) 
+		imported_books_count = 0
+		edited_books_count = 0
+
 		(2..spreadsheet.last_row).each do |i|
 			row = Hash[[header, spreadsheet.row(i)].transpose]
 			attrs = row.to_hash
-			book = Book.where(["title = ?","#{attrs[:title]}"]).first || Book.new
+			Rails.logger.info "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#{attrs['title']}@@@@@@@@@@@@@@@@@@@@@@@@@"
+			book = Book.where(["title = ?","#{attrs['title']}"]).first || Book.new
+		    if book[:id]
+		    	Rails.logger.info "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-----IF-----@@@@@@@@@@@@@@@@@@@@@@@@@"
+			   	edited_books_count += 1
+		    else
+		    	Rails.logger.info "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-----ELSE-----@@@@@@@@@@@@@@@@@@@@@@@@@"
+		    	imported_books_count += 1
+		    end
 		    book.attributes = attrs
 		    book.save!
+
 		end
 
-	  	redirect_to books_path, notice: "Books imported."
+	  	redirect_to books_path, notice: (imported_books_count.to_s + " books imported. " + edited_books_count.to_s + " books already exist in database")
 	end
 
 	# This creates a different object based on the format of the input file. This is taken care of by the gem ROO
