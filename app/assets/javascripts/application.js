@@ -53,7 +53,6 @@ $(document).ready(function(){
 			if(searchTerm !== '') {
 				var url = '/books/ajaxsearchbooks';
 				var searchdata = { 'searchterm' : searchTerm };
-				
 				$.ajax({
 					url: url,
 					type: "POST",
@@ -61,7 +60,6 @@ $(document).ready(function(){
 					data: searchdata,
 					success: function(data){
 						$('#bookSearchResults').css('visibility','visible');
-						//$('.book-search-results-content').css('visibility','visible');
 						$('.book-search-results-content').empty();
 						$('.book-search-results-content').append(data);
 					}
@@ -70,7 +68,6 @@ $(document).ready(function(){
 			else
 			{
 				$('.book-search-results-content').empty();
-				//$('.book-search-results-content').css('visibility','hidden');
 				$('#bookSearchResults').css('visibility','hidden');
 			}
 		}
@@ -90,10 +87,33 @@ $(document).ready(function(){
 $(window).keyup(function(event){
 	if(event.keyCode == 27)
 	{
-		if(!$('.book-search-results-content').is('hidden'))
+		if(!$('#bookSearchResults').is('hidden'))
 		{
 			$('.book-search-results-content').empty();
-			$('.book-search-results-content').css('visibility','hidden');
+			$('#bookSearchResults').css('visibility','hidden');
+		}
+	}
+});
+
+$(window).mouseup(function(event){
+	var clickedElement = $(event.target);
+	var parentsTree = clickedElement.parents();
+	var flag = false; 
+
+	$.each(parentsTree,function(key,value){
+		if($(value).hasClass('book-search-results')){
+			flag = true;
+			return false;
+		}
+	});
+
+
+	if(!flag)
+	{
+		if($('#bookSearchResults').css("visibility") == "visible")
+		{
+			$('.book-search-results-content').empty();
+			$('#bookSearchResults').css('visibility','hidden');
 		}
 	}
 });

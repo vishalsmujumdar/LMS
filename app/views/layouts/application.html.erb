@@ -16,6 +16,7 @@
 max-height: 500px;
 width: 494px;
   }
+  
   </style>
 
 </head>
@@ -47,7 +48,7 @@ width: 494px;
 	<div id="main-container">
 		<div id="flash-message-container">
 			<% flash.each do |key,value| %>
-					<p><%= value %></p>
+					<div class="alert-box <%= key %>"><%= value %></div>
 			<% end %>
 		</div>
 

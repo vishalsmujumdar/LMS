@@ -28,6 +28,23 @@
 
 	<%= render :partial => "shared/book" %>
 
+	<div class="menu">
+		<% if can? :create, @bookitem %>
+			<div class="menu-item">
+				<div class = "submit-link showUserSearch">
+					Add Book Item
+				</div>			
+			</div>
+		<% end %>
+		<% if can? :update, @book %>
+			<div class="menu-item">
+				<div class = "submit-link">
+					<%= link_to "Edit Book", edit_book_path(@book), { :class => "submit-link"} %>
+				</div>
+			</div>
+		<% end %>	
+	</div>
+
 	<%= render :partial => "shared/bookitems" %>
 
 </div>

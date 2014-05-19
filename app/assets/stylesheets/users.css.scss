@@ -70,4 +70,34 @@
   margin: 30px 0px;
   font-size: 20px;
 }
-
+.alert-box {
+  color:#555;
+  border-radius:10px;
+  font-family:Tahoma,Geneva,Arial,sans-serif;font-size:11px;
+  padding:10px 36px;
+  margin:10px;
+}
+.alert-box span {
+  font-weight:bold;
+  text-transform:uppercase;
+}
+.alert {
+  background:#ffecec no-repeat 10px 50%;
+  background-image: asset-data-url('error.png');
+  border:1px solid #f5aca6;
+}
+.success {
+  background:#e9ffd9 no-repeat 10px 50%;
+  background-image: asset-data-url('success.png');
+  border:1px solid #a6ca8a;
+}
+.warning {
+  background:#fff8c4 no-repeat 10px 50%;
+  background-image: asset-data-url('warning.png');
+  border:1px solid #f2c779;
+}
+.notice {
+  background:#e3f7fc no-repeat 10px 50%;
+  background-image: asset-data-url('notice.png');
+  border:1px solid #8ed9f6;
+}
