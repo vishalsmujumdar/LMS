@@ -43,7 +43,7 @@ a.submit-link :visited,
 .book .btn-book a,
 .book .btn-book a:link,
 .book .btn-book a:hover,
-.book .btn-book a:visited{
+.book .btn-book a:visited {
 	text-decoration: none;
 	color: #ffffff;
 }
@@ -174,7 +174,7 @@ a.submit-link :visited,
 .submit-link .submit-link a,
 .submit-link .submit-link a:link,
 .submit-link .submit-link a:hover,
-.submit-link .submit-link a:{
+.submit-link .submit-link a:visited {
  text-decoration: none;
 color: #000000;
 }
