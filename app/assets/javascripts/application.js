@@ -82,6 +82,27 @@ $(document).ready(function(){
  // window.location.reload(1);
 //}, 5000);
 
+	$('#excel_submit').bind('click',function(){
+		var file = $('#file').val();
+		if(file == ''){
+			alert('Please select a file.');
+			return false;	
+		}
+		else
+		{
+			var ext = file.split('.').pop();
+			if($.inArray(ext,['csv','xls','xlsx']) == -1 ){
+				alert("Please upload a .csv , .xls , or .xlsx file");
+				return false;
+			}
+			else
+			{
+				console.log("valid format");
+				return true;
+			}
+		}    
+	});
+
 });
 
 $(window).keyup(function(event){

@@ -20,7 +20,7 @@
 		<div class="modal-row first">
 			<%= form_tag import_books_path, multipart: true do %>
 			  <%= file_field_tag :file %>
-			  <%= submit_tag "Import" %>
+			  <%= submit_tag "Import", { :id => "excel_submit" } %>
 			<% end %>
 		</div>
 	</div>

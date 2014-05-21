@@ -1,6 +1,17 @@
 <% content_for :head do %>
   	<style type="text/css">
-		
+		.bookitem-row.size-1 {
+			width: 180px;
+		}
+		.bookitem-row.size-2 {
+			width: 120px;
+		}
+		.bookitem-row.size-3 {
+
+		}
+		.bookitem-row.size-4 {
+
+		}
 	</style>
 <% end %>
 <div class="title">
@@ -8,7 +19,7 @@
 </div>
 
 <div id="page-wrapper">
-	<% if @user.bookitems.size > 0 %>
+	<!--<% if @user.bookitems.size > 0 %>
 		<div class="container-2">
 			<% @user.bookitems.each do |bookitem| %>
 				<div class="item-wrapper">
@@ -16,6 +27,36 @@
 				</div>
 			<% end %>
 		</div>
+	<% else %>
+		No Books donated...
+	<% end %>-->
+
+	<% if @user.bookitems.size > 0 %>
+		<% @user.bookitems.each_with_index { |bookitem, index| %>
+			<% book = bookitem.book %>
+			<div class="bookitem">
+				<div class="serial-number">
+					<%= index + 1 %>
+				</div>
+				<div class="bookitem-row size-1">
+					    <div class="row-label"><strong>Book:</strong></div>
+					    <div class="row-value"><%= book.title %></div>
+				</div>
+				<div class="bookitem-row size-2">
+				    <div class="row-label"><strong>Author</strong></div>
+				    <div class="row-value"><%= book.authors %></div>
+				</div>
+				<div class="bookitem-row size-1">
+				    <div class="row-label"><strong>Category</strong></div>
+				    <div class="row-value"><%= book.category %></div>
+				</div>
+				<div class="bookitem-row last">
+					<%= link_to "View this copy", book_bookitem_path(book,bookitem), :class => "submit-link" %>
+				</div>
+			</div>
+			<!--<%= link_to (image_tag bookitem.book.cover.url(:small)), book_bookitem_path(bookitem.book,bookitem) %>-->
+							
+		<% } %>
 	<% else %>
 		No Books donated...
 	<% end %>
