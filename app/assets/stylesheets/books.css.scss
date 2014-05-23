@@ -80,9 +80,11 @@
       cursor: pointer;
     }
     .modal-body {
+      min-height: 295px;
     }
     .modal-row {
       padding: 10px;
+      overflow: hidden;
     }
 
     .avatar {

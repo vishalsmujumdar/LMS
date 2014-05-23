@@ -5,7 +5,6 @@
   	</script>
 	<style type="text/css">
 		
-
 	</style>
 <% end %>
 <div class="modal-backdrop fade" style="visibility:hidden">	
@@ -18,10 +17,64 @@
 		<div class="modal-close"></div>
 	</div>
 	<div class="modal-body">
-		<div class="modal-row first">
-			Enter search term: &nbsp;&nbsp;<input id="searchData" type="text" placeholder="Search User...">
-		</div>
-		<div id="searchResults" style="visibility:hidden"></div>
+		<div class="tabs-container">  
+            <ul class="tabs-list">
+                <li class="tab"><a href="#tab1">Search User</a></li>
+                <li class="tab"><a href="#tab2">New User</a></li>
+            </ul>
+            
+            <div class="tabs-contents">
+                <div id="tab1" class="content-item">
+             		<div class="modal-row">
+						<div class="label">
+                			Enter search term:
+                		</div>
+                		<div class="input-container">
+                			<input id="searchData" type="text" placeholder="Search User...">
+                		</div>
+					</div>
+					<div id="searchResults" style="visibility:hidden"></div>
+				</div>
+                <div id="tab2" class="content-item">
+                	<div class="modal-row">
+                		<div class="label">
+                			Name: 	
+                		</div>
+                		<div class="input-container">
+                			<input type="text" placeholder="Name...">	
+                		</div>						
+					</div>
+					<div class="modal-row">
+						<div class="label">
+                			Employee Id:
+                		</div>
+                		<div class="input-container">
+                			<input type="text" placeholder="Employee Id...">
+                		</div>
+                		
+					</div>
+					<div class="modal-row">
+						<div class="label">
+                			Email:
+                		</div>
+                		<div class="input-container">
+                			<input type="text" placeholder="Email...">
+                		</div>
+                		 
+					</div>
+					<div class="modal-row">
+						<div class="label">
+                		</div>
+                		<div class="input-container">
+                			<input type="submit">	
+                		</div>
+					</div>
+                </div>
+                
+            </div>
+            
+        </div>
+
 	</div>
 </div>
 <div id="page-wrapper">

@@ -73,14 +73,7 @@ $(document).ready(function(){
 		}
 	});
 
-	
-
 	$("#main-container .serial-number[title]").tooltips();
-	
-
-//	setTimeout(function(){
- // window.location.reload(1);
-//}, 5000);
 
 	$('#excel_submit').bind('click',function(){
 		var file = $('#file').val();
@@ -102,7 +95,33 @@ $(document).ready(function(){
 			}
 		}    
 	});
+	        
+	$('.tabs-container ul').each(function(){
+        var $links = $(this).find('a');
+        var $active = $($links.filter('[href="' + location.hash + '"]')[0] || $links[0]);
+        $active.parent().addClass('active');
+        $content = $($active.attr('href'));
+        $content.show();
+        $links.not($active).each(function () {
+           $(this.hash).hide();
+        });
 
+
+        $(this).on('click', 'a', function(e){
+          $active.parent().removeClass('active');
+          $content.hide();
+
+          $active = $(this);
+          $content = $(this.hash);
+
+          $active.parent().addClass('active');
+          $content.show();
+
+          e.preventDefault();
+        });
+    });
+
+// End of Document.ready
 });
 
 $(window).keyup(function(event){
