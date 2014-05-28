@@ -7,7 +7,7 @@ gem 'rails', '4.1.0'
 gem 'sqlite3', '~> 1.3.9', group: :development
 
 # Use postgresql for database in production so that app can be deployed onto heroku
-gem 'pg', group: :production
+# gem 'pg', group: :production
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
