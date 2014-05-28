@@ -1,4 +1,5 @@
 class BookitemsController < ApplicationController
+  include UsersHelper
   before_filter :authenticate_user!
   load_and_authorize_resource
 
@@ -12,14 +13,20 @@ class BookitemsController < ApplicationController
   end
 
   def create
-  	@book = Book.find(params[:book_id])
+  	if params[:w_user]
+      @user = add_new_user(user_params)  
+    else
+      @paramuser = params[:user];
+      @user = User.where(["employee_id = ?", @paramuser[:employee_id].to_i]).first      
+    end
+
+    @book = Book.find(params[:book_id])
     @bookitem = @book.bookitems.create()
-  	@paramuser = params[:user];
-  	@user = User.where(["employee_id = ?", @paramuser[:employee_id].to_i]).first
+
   	@bookitem.user_id = @user[:id]
 
   	if @bookitem.save
-  		@book.number_of_copies ? @book.number_of_copies += 1 :  @book.number_of_copies = 1
+  		@book.number_of_copies ? @book.number_of_copies = 1 : @book.number_of_copies += 1
   		@book.save
   		redirect_to book_path(@book), :notice => "Book item saved successfully"
   	else
@@ -32,6 +39,10 @@ class BookitemsController < ApplicationController
     @bookitem = Bookitem.find(params[:id])
 
   end
-
+  
+  private
+      def user_params
+        params.require(:user).permit(:name, :email, :employee_id)
+      end
   
 end

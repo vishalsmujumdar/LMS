@@ -36,39 +36,46 @@
 					<div id="searchResults" style="visibility:hidden"></div>
 				</div>
                 <div id="tab2" class="content-item">
-                	<div class="modal-row">
-                		<div class="label">
-                			Name: 	
-                		</div>
-                		<div class="input-container">
-                			<input type="text" placeholder="Name...">	
-                		</div>						
-					</div>
-					<div class="modal-row">
-						<div class="label">
-                			Employee Id:
-                		</div>
-                		<div class="input-container">
-                			<input type="text" placeholder="Employee Id...">
-                		</div>
-                		
-					</div>
-					<div class="modal-row">
-						<div class="label">
-                			Email:
-                		</div>
-                		<div class="input-container">
-                			<input type="text" placeholder="Email...">
-                		</div>
-                		 
-					</div>
-					<div class="modal-row">
-						<div class="label">
-                		</div>
-                		<div class="input-container">
-                			<input type="submit">	
-                		</div>
-					</div>
+                	<%= form_for User.new, :url => book_bookitems_path(@book) do |form| %>
+                		<%= hidden_field_tag :w_user, true %>
+	                	<div class="modal-row">
+	                		<div class="label">
+	                			<%= form.label :name, "Name" %>
+	                		</div>
+	                		<div class="input-container">
+	                			
+	                			<%= form.text_field :name, autofocus: true, :placeholder => "Name..." %>
+	                		</div>						
+						</div>
+						<div class="modal-row">
+							<div class="label">
+	                			<%= form.label :employee_id, "Employee Id" %>
+	                		</div>
+	                		<div class="input-container">
+	                			
+	                			<%= form.text_field :employee_id, autofocus: true, :placeholder => "Employee Id..." %>
+	                		</div>
+	                		
+						</div>
+						<div class="modal-row">
+							<div class="label">
+	                			<%= form.label :email, "Email Address" %>
+	                		</div>
+	                		<div class="input-container">
+	                			
+	                			<%= form.email_field :email, autofocus: true, :placeholder => "Email..." %>
+	                		</div>
+	                		 
+						</div>
+						<div class="modal-row">
+							<div class="label">
+	                		</div>
+	                		<div class="input-container">
+	                			
+	                			<%= form.submit "Submit" %>
+	                		</div>
+						</div>
+					<% end %>
                 </div>
                 
             </div>

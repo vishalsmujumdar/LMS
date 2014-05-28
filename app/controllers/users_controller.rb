@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  include BookitemsHelper
+
   $objJSON = ActiveSupport::JSON 
 
   def index
@@ -7,6 +9,7 @@ class UsersController < ApplicationController
     else
         @books = Book.limit(8).order("RANDOM()")
     end
+    @users = User.all
   end
 
   def show
@@ -25,15 +28,22 @@ class UsersController < ApplicationController
   	end
 
   	@name = { :value => params[:searchterm].capitalize }
-	@data = params[:searchterm].capitalize
-	@users = User.where(['name LIKE ?', "#{@data}%"])
-	@usersJSON = $objJSON.encode(@user)
-	
-	@returnhtml = @users.size == 0 ? "No users match search term" : render_to_string(partial: 'userforms') 
-	
-	respond_to do |format|
-	   format.html { render :html => @returnhtml.html_safe }
-	   format.json { render :json => @usersJSON }
-	end
+  	@data = params[:searchterm].capitalize
+  	@users = User.where(['name LIKE ?', "#{@data}%"])
+  	@usersJSON = $objJSON.encode(@user)
+  	
+  	@returnhtml = @users.size == 0 ? "No users match search term" : render_to_string(partial: 'userforms') 
+  	
+  	respond_to do |format|
+  	   format.html { render :html => @returnhtml.html_safe }
+  	   format.json { render :json => @usersJSON }
+  	end
   end
+
+  private
+    def user_params
+      params.require(:user).permit(:name, :email, :employee_id)
+    end
+
+
 end

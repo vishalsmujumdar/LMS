@@ -30,7 +30,7 @@
 <% end %>
 
 <div id="page-wrapper">
-	<div class="container-2">
+	<!-- <div class="container-2">
 		<% if user_signed_in? %>
 			<% @user.bookissues.each do |bookissue| %>
 				<% if bookissue.status %>
@@ -47,5 +47,35 @@
 					</div>
 			<% end %>
 		<% end %>
-	</div>
+	</div> -->
+
+	<% @users.each do |user| %>
+		<div class="user">
+			<div class="avatar"></div>
+				<div class="row">
+					<div class="row-left">
+						<div class="row-left-top">
+							<div class="name">
+								 <%= label :name, user.name %>
+							</div>
+							<div class="empid">
+								 <%= label :employee_id, user.employee_id %>
+							</div>
+						</div>
+						<div class="row-left-bottom">
+							<div class="email">
+								 <%= label :email, user.email %>
+							</div>
+						</div>
+					</div>
+					<div class="row-right">
+						<div class="row-btn">
+							 <%= link_to "Manage", user_path(user), :class => "submit-link" %>
+						</div>
+					</div>	
+				</div>
+		</div>
+	<% end %>
+
+
 </div>
