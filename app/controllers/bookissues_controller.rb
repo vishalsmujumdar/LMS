@@ -12,7 +12,7 @@ class BookissuesController < ApplicationController
 		if params[:w_user]
 	      @user = add_new_user(user_params)  
 	    else
-		  @paramuser = params[:user];
+		  @paramuser = params[:user]
 	  	  @user = User.where(["employee_id = ?", @paramuser[:employee_id].to_i]).first
   		end
     	# create bookissue object => bookitem_id, user_id

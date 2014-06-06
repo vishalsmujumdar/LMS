@@ -692,8 +692,10 @@ color: #fff;
   position:relative;
   transition:0.5s;
 }
-#ribbon a:hover
-{background:#c11;color:#fff;}
+/*#ribbon a:hover{
+  background:#c11;
+  color:#fff;
+}*/
 #ribbon a::before,
 #ribbon a::after{
   content:"";
@@ -705,9 +707,17 @@ color: #fff;
   height:1px;
   background:#fff;
 }
+#ribbon a::after {
+  bottom:1px;
+  top:auto;
+}
+#ribbon a.is-avail {
+  background: green;
+}
+#ribbon a.is-not-avail {
+  background: #c11;
+}
 
-#ribbon a::after
-{bottom:1px;top:auto;}
 @media screen and (min-width:800px){
   #ribbon {
     position:fixed;

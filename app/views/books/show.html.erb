@@ -87,11 +87,10 @@
 </div>
 <div id="page-wrapper">
 	<span id="ribbon">
-		<a href="a">
-		  <% if $availability_flag %>
-		 	Available
+		<% if $availability_flag %>
+			<a href="#" class="is-avail">Available</a>
 	 	  <% else %>
-	 	  	Not available
+			<a href="#" class="is-not-avail">Not available</a>
 	 	  <% end %>
 		</a>
 	</span>
