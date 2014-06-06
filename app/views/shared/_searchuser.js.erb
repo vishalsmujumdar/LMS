@@ -60,9 +60,13 @@ $(function() {
 			$('#searchResults').css('visibility','hidden');
 		}
 	});
-
-    if(previousPageURL.indexOf('/books/new') > -1)
+    currentPageURL = document.URL;
+    if(currentPageURL.indexOf('/book/') > -1)
     {
-		$('.showUserSearch').trigger('click');    	
+	    if(previousPageURL.indexOf('/books/new') > -1)
+	    {
+			$('.showUserSearch').trigger('click');    	
+	    }    	
     }
+
 });

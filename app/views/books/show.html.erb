@@ -4,6 +4,7 @@
     	<%= render :partial => "shared/searchuser", :formats=>[:js] %>
   	</script>
 	<style type="text/css">
+
 		
 	</style>
 <% end %>
@@ -85,7 +86,15 @@
 	</div>
 </div>
 <div id="page-wrapper">
-
+	<span id="ribbon">
+		<a href="a">
+		  <% if $availability_flag %>
+		 	Available
+	 	  <% else %>
+	 	  	Not available
+	 	  <% end %>
+		</a>
+	</span>
 	<%= render :partial => "shared/book" %>
 
 	<div class="menu">
@@ -108,4 +117,3 @@
 	<%= render :partial => "shared/bookitems" %>
 
 </div>
-

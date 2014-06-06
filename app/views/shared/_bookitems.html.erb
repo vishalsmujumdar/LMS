@@ -5,7 +5,7 @@
 			<%= link_to (index + 1), book_bookitem_path(@book,item) %>
 			</div>
 			<% if item.availability %>
-				<div class="bookitem-row">
+				<div class="bookitem-row bookname">
 				    <div class="row-label"><strong>Status:</strong></div>
 				    <div class="row-value"><%= "Available" %></div>
 				</div>
@@ -28,7 +28,7 @@
 				    <div class="row-label"><strong>Owner:</strong></div>
 				    <div class="row-value"><%= link_to item.user.name, user_path(item.user) %></div>
 				</div> -->
-				<div class="bookitem-row">
+				<div class="bookitem-row bookname">
 				    <div class="row-label"><strong>Issued By:</strong></div>
 				    <div class="row-value"><%= link_to  latestbookissue.user.name, user_path(latestbookissue.user) %></div>
 				</div>

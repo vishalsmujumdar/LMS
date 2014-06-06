@@ -41,7 +41,7 @@ class UsersController < ApplicationController
     # as a json by ajax call made in 'shared/_searchuser.js.erb' partial
     @name = { :value => params[:searchterm].capitalize }
   	@data = params[:searchterm].capitalize
-  	@users = User.where(['name LIKE ?', "#{@data}%"])
+  	@users = User.where(['name LIKE ?', "%#{@data}%"])
   	@usersJSON = $objJSON.encode(@user)
   	
     # using the above @users variable partial 'user/_userforms.html.erb' builds 

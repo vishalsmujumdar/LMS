@@ -3,6 +3,7 @@ class BooksController < ApplicationController
 	before_filter :authenticate_user!, :except => [:show, :index, :ajaxsearchbooks]
 	#load_and_authorize_resource 
 	$objJSON = ActiveSupport::JSON
+	$availability_flag = false
 
 	def index
 		@books = Book.all
@@ -23,7 +24,8 @@ class BooksController < ApplicationController
 		@book = Book.find(params[:id]) 
 	end
 	def show
-		@book = Book.find(params[:id]) 
+		@book = Book.find(params[:id])
+		$availability_flag = check_availability(@book)
 	end
 	def update
 		@book = Book.find(params[:id]) 
@@ -45,7 +47,7 @@ class BooksController < ApplicationController
 		# search book based on search term entered...the search term is sent as hash with key 'searchterm'
 		# as a json by ajax call made in 'javascripts/application.js'
 		@value = params[:searchterm].capitalize
-		@books = Book.where(["title LIKE ?","#{@value}%"])
+		@books = Book.where(["title LIKE ?","%#{@value}%"])
 		##@booksJSON = $objJSON.encode(@book)
 		
 		# using the above @books variable partial 'books/_bookforms.html.erb' builds 
@@ -104,4 +106,14 @@ class BooksController < ApplicationController
     	def book_params
         	params.require(:book).permit( :isbn, :title, :description, :category, :authors, :cover ) #:cover_file_name, :cover_content_type, :cover_file_size, :cover_updated_at)
       	end
+
+      	def check_availability(book)
+      		bis_available = Array.new
+			book.bookitems.each do |bookitem|
+				if bookitem.availability
+					bis_available.push(bookitem)
+				end
+			end
+			bis_available.size > 0 ? availability_flag = true : availability_flag = false
+		end
 end

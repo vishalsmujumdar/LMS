@@ -48,34 +48,35 @@
 			<% end %>
 		<% end %>
 	</div> -->
+	<% if can? :create, @user %>
+		<div class="title">All Users</div>
 
-	<% @users.each do |user| %>
-		<div class="user">
-			<div class="avatar"></div>
-				<div class="row">
-					<div class="row-left">
-						<div class="row-left-top">
-							<div class="name">
-								 <%= label :name, user.name %>
+		<% @users.each do |user| %>
+			<div class="user">
+				<div class="avatar"></div>
+					<div class="row">
+						<div class="row-left">
+							<div class="row-left-top">
+								<div class="name">
+									 <%= label :name, user.name %>
+								</div>
+								<div class="empid">
+									 <%= label :employee_id, user.employee_id %>
+								</div>
 							</div>
-							<div class="empid">
-								 <%= label :employee_id, user.employee_id %>
+							<div class="row-left-bottom">
+								<div class="email">
+									 <%= label :email, user.email %>
+								</div>
 							</div>
 						</div>
-						<div class="row-left-bottom">
-							<div class="email">
-								 <%= label :email, user.email %>
+						<div class="row-right">
+							<div class="row-btn">
+								 <%= link_to "Manage", user_path(user), :class => "submit-link" %>
 							</div>
-						</div>
+						</div>	
 					</div>
-					<div class="row-right">
-						<div class="row-btn">
-							 <%= link_to "Manage", user_path(user), :class => "submit-link" %>
-						</div>
-					</div>	
-				</div>
-		</div>
+			</div>
+		<% end %>
 	<% end %>
-
-
 </div>

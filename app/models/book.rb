@@ -10,7 +10,7 @@ class Book < ActiveRecord::Base
 
 	# validations for book
 	validates :title, :authors, :category, presence: true
-	validates :isbn, presence: true, numericality: true
+	validates :isbn, presence: true #, numericality: true
 
 
 end
