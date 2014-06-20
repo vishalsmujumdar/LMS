@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140506122852) do
+ActiveRecord::Schema.define(version: 20140619142130) do
 
   create_table "authors", force: true do |t|
     t.string   "name"
@@ -30,8 +30,8 @@ ActiveRecord::Schema.define(version: 20140506122852) do
     t.datetime "date_of_actual_return"
   end
 
-  add_index "bookissues", ["bookitem_id"], name: "index_bookissues_on_bookitem_id"
-  add_index "bookissues", ["user_id"], name: "index_bookissues_on_user_id"
+  add_index "bookissues", ["bookitem_id"], name: "index_bookissues_on_bookitem_id", using: :btree
+  add_index "bookissues", ["user_id"], name: "index_bookissues_on_user_id", using: :btree
 
   create_table "bookitems", force: true do |t|
     t.boolean  "availability", default: true
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20140506122852) do
     t.datetime "updated_at"
   end
 
-  add_index "bookitems", ["book_id"], name: "index_bookitems_on_book_id"
+  add_index "bookitems", ["book_id"], name: "index_bookitems_on_book_id", using: :btree
 
   create_table "books", force: true do |t|
     t.string   "isbn"
@@ -59,24 +59,24 @@ ActiveRecord::Schema.define(version: 20140506122852) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                  default: "",     null: false
+    t.string   "encrypted_password",     default: "",     null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,      null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.string   "name"
     t.integer  "employee_id"
-    t.string   "usertype"
+    t.string   "usertype",               default: "USER"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

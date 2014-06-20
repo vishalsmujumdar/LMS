@@ -106,13 +106,21 @@
 	<div class="menu">
 		<% if can? :update, @bookitem %>
 			<% latest_bookissue = @bookitem.bookissues.last %>
-			<% if !latest_bookissue.status %>
+			<% if latest_bookissue %>
+				<% if !latest_bookissue.status %>
+					<div class="menu-item">
+						<div class = "submit-link showUserSearch">
+							Issue this copy
+						</div>
+					</div>
+				<% end %>
+			<% else %>
 				<div class="menu-item">
 					<div class = "submit-link showUserSearch">
 						Issue this copy
 					</div>
 				</div>
-			<% end %>			
+			<% end %>
 		<% end %>
 		<% if can? :destroy, @book %>
 			<div class="menu-item">

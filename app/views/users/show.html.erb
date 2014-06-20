@@ -64,7 +64,7 @@
 
 	<div class="title">Book Issues [<%= @user.bookissues.size.to_s %>]</div>
 
-	<% if @user.bookitems.size > 0 %>
+	<% if @user.bookissues.size > 0 %>
 		<% @user.bookissues.each_with_index { |bookissue, index| %>
 			<% book = bookissue.bookitem.book %>
 			<div class="bookitem">

@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     if user_signed_in? 
         @user = User.find(current_user)
     else
-        @books = Book.limit(8).order("RANDOM()")
+        @books = Book.limit(8).order("RAND()")
     end
     @users = User.all
   end

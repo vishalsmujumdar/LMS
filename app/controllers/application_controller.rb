@@ -7,7 +7,11 @@ class ApplicationController < ActionController::Base
 
   # overriding devise method to redirect to refferer page after successful sign in
 	def after_sign_in_path_for(resource)
-	  request.referrer
+		if request.referrer.include? new_user_registration_path
+			super
+		else
+			request.referrer
+		end	  
 	end
   protected
  
@@ -24,7 +28,7 @@ class ApplicationController < ActionController::Base
 
 	def configure_permitted_parameters
 	  # configuring	devise controller(registrations) and action(sign_up) to accept additional parameters
-	   devise_parameter_sanitizer.for(:sign_up) << [:name, :employee_id, :usertype]
+	   devise_parameter_sanitizer.for(:sign_up) << [:name, :employee_id]
 	end
   
 end

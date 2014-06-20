@@ -30,7 +30,7 @@
 <% end %>
 
 <div id="page-wrapper">
-	<!-- <div class="container-2">
+	<div class="container-2">
 		<% if user_signed_in? %>
 			<% @user.bookissues.each do |bookissue| %>
 				<% if bookissue.status %>
@@ -47,7 +47,7 @@
 					</div>
 			<% end %>
 		<% end %>
-	</div> -->
+	</div>
 	<% if can? :create, @user %>
 		<div class="title">All Users</div>
 
