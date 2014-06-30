@@ -15,7 +15,9 @@
 				</div> -->
 				<div class="bookitem-row last">
 					<% if can? :create, @bookissue %>
-				  		<%= link_to "Issue this copy", new_book_bookitem_bookissue_path(@book,item.id), :class => "submit-link" %>
+				  		<!--<%= link_to "Issue this copy", new_book_bookitem_bookissue_path(@book,item.id), :class => "submit-link" %>-->
+				  		<%= link_to "Issue Copy", "#", :id => "#{item.id}", :class => "submit-link" %>
+						
 				  	<% end %>
 				</div>
 			<% else %>

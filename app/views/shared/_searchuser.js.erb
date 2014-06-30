@@ -1,33 +1,30 @@
 $(function() {
-
+	var global_bookitemid = 0;
+	var issue_flag = false;
+	var originalFormPath = $('form#new_user').attr('action');
   	$('.showUserSearch').click(function() {
-      	$('.modal-backdrop.fade').css("visibility","visible");
-      	$('.modal-backdrop.fade').addClass('in');
-
-      	if ( $( ".modal" ).is( ":hidden" ) ) {
-      		$( ".modal" ).css("visibility","visible");
-		    $( ".modal" ).slideDown( "slow" );
-		}
-		else {
-		    $( ".modal" ).hide();
-		}
-
-
-      	//$('#user_select').slideToggle("fast");
+      	showModal();
 	});
 	$('.modal-close').click(function(){
-		$('.modal input').val('');
-		$('#searchResults').empty();
-		$('#searchResults').css('visibility','hidden');
-		$('.modal-backdrop.fade').css("visibility","hidden");
-      	$('.modal-backdrop.fade').removeClass('in');
-      	$('.modal').hide();
-
+		global_bookitemid = 0;
+		issue_flag = false;
+		$('form#new_user').attr('action',originalFormPath);
+		hideModal();
       	// var divToClose = $(this).parent().parent();
       	// console.log(divToClose);
       	// divToClose.css("visibility","hidden");
       	// divToClose.removeClass('in');
       	// divToClose.removeClass('show');
+	});
+
+	$('a.submit-link').on('click',function(){
+		global_bookitemid = $(this).attr('id');
+		issue_flag = true;
+		originalFormPath = $('form#new_user').attr('action');
+		var newFormPath = originalFormPath+'/'+ global_bookitemid + '/bookissues';
+		$('form#new_user').attr('action',newFormPath);
+
+		showModal();
 	});
 
     $('#searchData').keyup(function(){
@@ -37,8 +34,7 @@ $(function() {
 			var host = window.location.host;
 			var thisURL = window.location.href.toString().split(host)[1].split('/');
 			var bookid = parseInt(thisURL[(thisURL.indexOf('books')+1)]);
-			var bookitemid = parseInt(thisURL[(thisURL.indexOf('bookitems')+1)])
-			console.log(bookitemid);
+			var bookitemid = issue_flag ? global_bookitemid : parseInt(thisURL[(thisURL.indexOf('bookitems')+1)]);
 			var url = '/users/ajaxsearchusers';
 			var searchdata = { 'searchterm' : searchTerm, 'bookid' : bookid , 'bookitemid' : bookitemid };
 
@@ -70,3 +66,24 @@ $(function() {
     }
 
 });
+function showModal(){
+	$('.modal-backdrop.fade').css("visibility","visible");
+  	$('.modal-backdrop.fade').addClass('in');
+
+  	if ( $( ".modal" ).is( ":hidden" ) ) {
+  		$( ".modal" ).css("visibility","visible");
+	    $( ".modal" ).slideDown( "slow" );
+	}
+	else {
+	    $( ".modal" ).hide();
+	}
+}
+function hideModal(){
+	$('.modal input').val('');
+	$('#searchResults').empty();
+	$('#searchResults').css('visibility','hidden');
+	$('.modal-backdrop.fade').css("visibility","hidden");
+  	$('.modal-backdrop.fade').removeClass('in');
+  	$('.modal').hide();
+
+}

@@ -37,9 +37,10 @@ test:
   password: root
 
 production:
-  #<<: *default
-  #database: db/production.sqlite3
-  adapter: postgresql
-  encoding: utf8
-  database: librarymanager_production
+  adapter: mysql2
+  #encoding: utf8
+  reconnect: false
+  database: library_db_prod
   pool: 5
+  username: root
+  password: root
